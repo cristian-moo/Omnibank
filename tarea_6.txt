@@ -1,0 +1,10 @@
+Tarea 6: Análisis Forense Post-Mortem de Bloqueo Masivo en Producción (OmniBank)
+
+La raiz computacional:
+El problema ocurrio porque PostgreSQL tuvo que revisar los 75 millones de registros para validar el nuevo CHECK, utilizando un Access Exclusive Lock. Esto bloqueo temporalmente las lecturas y operaciones de escritura, provocando la caida del servicio.
+
+Paso 1: Adicion sin bloqueo de escaneo:
+Se deben agregar primero las restricciones con NOT VALID, para que se aplique a los nuevos registros sin revisar inmediatamente todo el historial existente.
+
+Paso 2: La validacion pasiva posterior:
+Despues se utiliza validate constraint para revisar los registros historicos, esta validacion utiliza un bloqueo menos restrictivo y permite que las operaciones normales continuen.
