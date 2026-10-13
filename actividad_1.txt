@@ -1,0 +1,12 @@
+Actividad 1: Levantamiento de Requisitos de OmniBank
+Lista de entidades:
+- Clientes
+- Cuentas
+- Transacciones
+
+RF1: La base de datos debe almacenar la informacion de cada cliente (Nombre, correo electronico, Numero telefonico, Fecha de nacimiento, Tax ID).
+RF2: La base de datos debe almacenar la informacion de cada cuenta (Numero de cuenta, Moneda (USD, EUR, etc.), Tipo de cuenta (Checking, Savings, Credit), Saldo actual y Limite de credito).
+RF3: El sistema debe permitir que el cliente pueda tener varias cuentas.
+RF4: El sistema debe permitir los tipos de transaccion (Deposito, Retiro y Transferencia).
+RF5: El sistema debe registrar las transacciones indicando la cuenta origen, cuenta destino, monto, tipo de transaccion y fecha exacta de realizacion.
+RF6: El sistema debe impedir que una cuenta tenga un saldo negativo.
