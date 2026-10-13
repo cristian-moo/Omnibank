@@ -1,0 +1,10 @@
+Tarea 5: Dictamen y Defensa de Políticas de Integridad Referencial en OmniBank
+
+La catastrofe empresarial en produccion:
+No se debe usar ON DELETE CASCADE en el core bancario porque al eliminar un cliente tambien podrian borrarse automaticamente sus cuentas, prestamos y transacciones. Esto podria causar una perdida grave de informacion por errores humanos o accesos no autorizados.
+
+El Rastro fiscal y Auditoria contable inalienable:
+Las transacciones y prestamos no deben borrarse fisicamente ya que forman parte del historial financiero y contable. Aunque un cliente cierre sus cuentas, sus operaciones deben conservarse para auditorias y obligaciones fiscales y aspectos legales.
+
+El estandar de la baja logica:
+La solucion correcta es realizar una baja logica, usando campos como is_active = false o cambiando el estado de la cuenta a closed. Asi, el cliente deja de estar activo, pero su historial permanece intacto.
