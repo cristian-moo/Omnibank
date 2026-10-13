@@ -1,0 +1,28 @@
+Actividad 2: Diseñando el ERD Base de OmniBank
+
+Entidades y Atributos:
+- Clientes:
+  * Cliente_ID (PK)
+  * Nombre
+  * Correo
+  * Numero telefonico
+  * Fecha de Nacimiento
+  * Tax ID
+
+- Cuenta:
+  * Cuenta_ID (PK)
+  * Numero cuenta
+  * Tipo Moneda
+  * Tipo cuenta
+  * Saldo
+  * Limite Credito
+
+- Transacciones:
+  * Transaccion_ID (PK)
+  * Deposito
+  * Retiro
+  * Transferencia
+
+Relaciones (Modelo Entidad-Relación):
+- Cliente (1) ----< Cuenta (N)
+- Cuenta (1) ----< Transacciones (N)
