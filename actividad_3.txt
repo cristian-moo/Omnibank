@@ -1,0 +1,27 @@
+Actividad 3: Normalizando el Prototipo Monolítico de OmniBank
+
+Primera forma Normal (1NF):
+Los campos que yo identifique que violan la atomicidad son: Cliente_nombre_y_contacto y tambien Moneda_y_tipo.
+
+Ejemplo de tabla 1NF:
+Nombre | Apellido | Correo | Numero | Moneda | Tipo Cuenta
+Roberto | Solo | Rob@gmail.com | 555-9011 | USD | Checking
+
+Paso 2 - Segunda y tercera forma Normal (2NF y 3NF):
+Respuesta de la pregunta: porque al no respetar la 1NF lo demas no puede trabajar correctamente, ya que no tiene datos especificos.
+
+Estructura Normalizada:
+- Cliente:
+  * Cliente_id (PK)
+  * Nombre
+  * Correo
+  * Numero telefonico
+  * Tax ID
+
+- Cuentas:
+  * Cuenta_id (PK)
+  * Cliente_id (FK)
+  * Numero cuenta
+  * Tipo moneda
+  * Tipo cuenta
+  * Saldo
