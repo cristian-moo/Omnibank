@@ -1,0 +1,24 @@
+Actividad 6: Evolucionando el Core Bancario OmniBank con Migraciones DDL Seguras
+
+CREATE TYPE core.loan_status_Enum AS ENUM (
+  'ACTIVE',
+  'PAID',
+  'DEFAULTED',
+  'CANCELLED'
+);
+BEGIN;
+
+ALTER TABLE core.customers
+ADD COLUMN Credit_score INTEGER,
+ADD CONSTRAINT chk_customers_credit_score_range
+CHECK (Credit_score BETWEEN 300 AND 850);
+
+ALTER TABLE core.acounts
+ADD COLUMN Iban VARCHAR(34) NULL,
+ADD CONSTRAINT uq_accounts_iban UNIQUE (Iban);
+
+ALTER TABLE core.loans
+ALTER COLUMN status TYPE core.loan_status_Enum
+USING status :: core.loan_status_Enum;
+
+COMMIT;
