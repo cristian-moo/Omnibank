@@ -1,0 +1,25 @@
+Actividad 5: Levantando los Cimientos del Core Bancario OmniBank (DDL)
+
+1. Espacio modulador:
+CREATE SCHEMA IF NOT EXISTS core;
+
+2. Construyendo la entidad Raiz:
+CREATE TABLE core.customers(
+  Cliente_id UUID DEFAULT gen_random_uuid(),
+  Nombre_completo VARCHAR(100) NOT NULL,
+  email VARCHAR(150) NOT NULL,
+  Telefono (Numerics),
+  Fecha_Nacimiento TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  is_active BOOLEAN DEFAULT True NOT NULL,
+  CONSTRAINT pk_Clientes PRIMARY KEY (Cliente_id),
+  CONSTRAINT uq_Clientes_email UNIQUE (email)
+);
+
+3. Entidades Hijas:
+CREATE TABLE core.Acounts(
+  Cuenta_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  Cliente_id UUID NOT NULL,
+  Tipo_cuenta core.Tipo_cuenta NOT NULL,
+  currency core.Tipo_Moneda NOT NULL,
+  balance NUMERIC(15,2) NOT NULL DEFAULT 0
+);
