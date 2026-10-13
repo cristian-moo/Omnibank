@@ -1,0 +1,32 @@
+Actividad 4: Asignación de Tipos de Datos Nativos y Enums en OmniBank
+
+CREATE TYPE tipos_monedas AS ENUM ('USD', 'EUR', 'MXN');
+CREATE TYPE tipos_cuentas AS ENUM ('Checking', 'Savings', 'Credit');
+CREATE TYPE tipos_transaccion AS ENUM ('Deposit', 'WithDrawal', 'Transfer');
+
+Estructura de Tablas:
+- Cuentas:
+  * Cuenta_id (PK)
+  * Cliente_id (FK)
+  * Numero Cuenta
+  * Tipo moneda
+  * Tipo cuenta
+  * Saldo (Numeric(15,2))
+  * Limite credito
+  * Actualizacion (Created_At TIMESTAMPZ)
+
+- Cliente:
+  * Cliente_id (PK)
+  * Nombre
+  * Correo
+  * Numero telefonico
+  * Fecha Nacimiento
+  * Tax ID
+  * Eliminacion
+
+- Transacciones:
+  * Transaccion_id (PK)
+  * Cuenta_id (FK)
+  * Deposito
+  * Retiro
+  * Transferencia
