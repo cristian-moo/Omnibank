@@ -1,0 +1,20 @@
+Tarea 7: Sincronización Resiliente del Pipeline KYC con Escrituras Idempotentes (`UPSERT`)
+
+1 - Analisis del antipatron Read-Before-Write:
+El metodo select+insert/update es ineficiente porque realiza dos consultas por cada registro, aumentando la latencia y el tiempo de procesamiento. Ademas, cuando varios servidores trabajan al mismo tiempo, pueden consultar que un cliente no existe y despues intentar insertarlo simultaneamente, provocando una condicion de carrera y errores por duplicidad.
+
+La solucion definitiva upsert:
+La solucion es utilizar upsert, ON CONFLICT DO UPDATE. PostgreSQL decide automaticamente si debe insertar un cliente nuevo o actualizar uno existente, evitando consultas previas y problemas de concurrencia.
+
+INSERT INTO core.customers
+(First_Name, Last_Name, email, phone)
+VALUES ('John', 'Doe', 'john@email.com', '555-0100')
+
+ON CONFLICT (email) Do UP DATE SET
+First_name = EXCLUDED.First_Name,
+Last_name = EXCLUDED.Last_Name,
+phone = EXCLUDED.phone
+RETURNING customer_id, email;
+
+Retorno del estado final:
+La clausula RETURNING customer_id, email devuelve inmediatamente al sistema el identificador y correo del cliente despues de realizar la insercion o actualizacion. Esto permite confirmar la operacion sin realizar otra consulta.
