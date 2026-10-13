@@ -1,0 +1,31 @@
+tarea 2: Refinamiento del ERD de OmniBank
+
+Clientes:
+- Cliente_ID (PK)
+- Nombre
+- Correo
+- Numero telefonico
+- Fecha Nacimiento
+- Tax ID
+- Eliminacion
+
+Cuentas:
+- Cuenta_ID (PK)
+- Cliente_ID (FK)
+- Numero cuenta
+- Tipo moneda
+- Tipo cuenta
+- Saldo
+- Limite Credito
+- Actualizacion
+
+Transacciones:
+- Transaccion_ID (PK)
+- Cuenta_ID (FK)
+- Deposito
+- Retiro
+- Transferencia
+
+Relaciones:
+- Clientes ----< Cuentas
+- Cuentas ----< Transacciones
