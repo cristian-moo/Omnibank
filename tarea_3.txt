@@ -1,0 +1,10 @@
+Tarea 3: Análisis de Dependencias Transitivas y Optimización Consciente en OmniBank
+
+¿Tiene razon el auditor de que una columna de saldo calculado es tecnicamente un dato derivado/redundante segun la teoria estricta de normalizacion pura?
+R = Si, en parte, el saldo_actual es un dato derivado porque se puede obtener sumando los depositos y restando los retiros de la tabla Transacciones.
+
+¿Que sucederia con la CPU y los tiempos de latencia (milisegundos) del servidor de Postgresql si calculamos el saldo desde cero (SUM()) en cada solicitud del frontend (infracciones a NFRs de rendimiento)?
+R = Si una cuenta tiene 250,000 transacciones, postgresql tendria que revisar y sumar muchas operaciones cada vez que se consulte el saldo. Si varios clientes hacen consultas, aumentaria el uso de CPU y los tiempos de latencia, lo que provocaria que el sistema se caiga.
+
+¿Porque en la banca de grado empresarial mantenemos deliberadamente el campo saldo_actual como una desnormalizacion controlada para no caer en inconsistencias con el historial transaccional en el futuro?
+R = Se mantiene para consultar el saldo rapidamente sin tener que sumar todo el historial cada vez. Es una desnormalizacion controlada. Para evitar inconsistencias, la actualizacion del saldo y el registro de la transaccion se realizan mediante transacciones ACID, ademas de poder usar bloqueos y triggers para mantener los datos sincronizados.
